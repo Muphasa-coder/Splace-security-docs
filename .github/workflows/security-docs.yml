@@ -1,4 +1,4 @@
-name: Security Docs Workflow
+name: Security Scans
 
 on:
   push:
@@ -7,22 +7,44 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  security:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Python Security Check with Bandit
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+      - name: Install Bandit
+        run: pip install bandit
 
-      - name: Run security checks
+      - name: Run Bandit (Python security scan)
+        run: bandit -r .
+
+      # Node.js Dependency Security Audit
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies and audit
         run: |
-          bandit -r .
+          if [ -f package.json ]; then
+            npm install
+            npm audit --audit-level=high
+          else
+            echo "No package.json found, skipping npm audit"
+          fi
+
+      # Docker Image Security Scan with Trivy
+      - name: Scan repo with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          ignore-unfixed: true
+          severity: HIGH,CRITICAL
