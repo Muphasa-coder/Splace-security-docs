@@ -1,0 +1,85 @@
+
+%% DFD: context + data flow (edit names to match your system)
+%% Export this to PNG from the Mermaid Live Editor or VS Code Mermaid extension.
+flowchart LR
+  %% Trust Boundaries
+  subgraph Internet[Public Internet]
+    U[Users]
+    Browser[Web Browser]
+    Mobile[Mobile App]
+  end
+
+  subgraph Vendors[Third-Party Vendors]
+    Pay[Payment Provider]
+    Email[Email Service]
+    KYC[KYC/Identity]
+    Analytics[Analytics/CDP]
+  end
+
+  subgraph Cloud[Company Cloud / VPC]
+    subgraph Edge[Edge/DMZ]
+      CDN[CDN/WAF]
+      APIGW[API Gateway]
+    end
+
+    subgraph App[Application Network]
+      FE[Frontend (SPA/SSR)]
+      Auth[Auth Service]
+      Core[Core Service]
+      Order[Order Service]
+      MQ[(Message Queue)]
+      Cache[(Cache)]
+    end
+
+    subgraph Data[Data Layer]
+      UserDB[(User DB)]
+      OrderDB[(Order DB)]
+      Logs[(Log Store / SIEM)]
+      Blob[(Object Storage)]
+      Secrets[(Secrets Manager / KMS)]
+    end
+  end
+
+  %% Flows: Users -> Frontend -> Backend -> Services -> DB -> Vendors
+  U -->|TLS| Browser
+  U -->|TLS| Mobile
+
+  Browser -->|TLS| CDN
+  CDN --> FE
+
+  FE -->|TLS/API| APIGW
+  Mobile -->|TLS/API| APIGW
+
+  APIGW --> Auth
+  APIGW --> Core
+  APIGW --> Order
+
+  Core --> MQ
+  Order --> MQ
+
+  Auth --> UserDB
+  Core --> UserDB
+  Order --> OrderDB
+  Core --> Blob
+  Core --> Logs
+  Order --> Logs
+
+  %% Outbound to 3rd parties
+  Core -->|charge| Pay
+  Auth -->|email OTP| Email
+  Core -->|KYC submit| KYC
+  FE -->|analytics events| Analytics
+
+  %% Callbacks / webhooks
+  Pay -->|webhook| APIGW
+  Email -->|bounce events| Logs
+  KYC -->|result| Core
+
+  %% Secrets
+  Auth -.->|read| Secrets
+  Core -.->|read| Secrets
+  Order -.->|read| Secrets
+
+  %% Notes
+  classDef boundary stroke-dasharray: 5 5;
+  class Internet,Cloud,Vendors boundary;
