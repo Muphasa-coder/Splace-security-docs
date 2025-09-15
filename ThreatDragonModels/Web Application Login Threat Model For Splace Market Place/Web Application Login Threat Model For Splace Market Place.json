@@ -1,0 +1,27 @@
+{
+  "version": "2.5.0",
+  "summary": {
+    "title": "Web Application Login Threat Model For Splace Market Place",
+    "owner": "Security Team",
+    "description": "This is a web application login system that allows users to authenticate using a username and password. \nThe application connects to a backend database to verify credentials and establishes a user session upon successful login. \nThe system runs on a public web server and stores user credentials in the database.\n",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "Login Flow Diagram",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.5.0",
+        "cells": [],
+        "description": "Data flow diagram showing user login process, authentication with database, and session creation."
+      }
+    ],
+    "diagramTop": 2,
+    "reviewer": "Lead Security Engineer - Abiola D. Mustapha",
+    "threatTop": 0
+  }
+}
