@@ -31,8 +31,8 @@
                 "text": "User"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -129,9 +129,40 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "d0f9ff47-3b39-4662-9214-97117a5b9cc9",
+                  "title": "User Identity Spoofing",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker may attempt to impersonate a legitimate user by stealing or forging credentials.",
+                  "mitigation": "Enforce strong password policies.\n\nUse MFA (Multi-Factor Authentication).\n\nLock accounts after multiple failed login attempts.\n\nImplement secure session management.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "af85c5c2-b763-44e0-b8b7-d289d0da33ba",
+                  "title": "Lack of Login Audit Trails",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "If login attempts are not logged, users (or attackers) could deny malicious activity.",
+                  "mitigation": "Implement logging for authentication attempts (success & failure).\n\nStore logs securely with integrity protection.\n\nRegularly review logs for anomalies.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 1
+              }
             }
           },
           {
@@ -148,8 +179,8 @@
                 "text": "Web App"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -246,12 +277,60 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "01da3261-765f-44aa-a661-095455c2eb8b",
+                  "title": "Credential Tampering in Transit",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Credentials (username, password) could be intercepted and modified if transmitted in plain text.",
+                  "mitigation": "Use HTTPS/TLS with strong ciphers.\n\nApply HSTS (HTTP Strict Transport Security).\n\nUse signed session tokens.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                },
+                {
+                  "id": "27315c1e-3a38-41e2-9015-e23744b6784f",
+                  "title": "Login Brute Force or DoS Attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Attackers may flood the login endpoint with requests, causing system unavailability.",
+                  "mitigation": "Rate-limit login attempts.\n\nImplement CAPTCHA for repeated failed logins.\n\nMonitor and block suspicious IPs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                },
+                {
+                  "id": "f2b77fcc-3f35-4302-a0d6-c18dfeb5414d",
+                  "title": "Privilege Escalation via Weak Access Controls",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "A normal user could exploit flaws in session handling or authorization to gain admin access.",
+                  "mitigation": "Implement role-based access control (RBAC).\n\nValidate user authorization on every request.\n\nRegularly test for privilege escalation vulnerabilities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
             }
           },
           {
@@ -268,11 +347,13 @@
                 "text": "User Database"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -369,13 +450,33 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "795f704c-a520-4a97-b4a0-5e849ea997b6",
+                  "title": "Leakage of Sensitive Login Data",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "The system could expose sensitive information (e.g., error messages revealing valid usernames or DB structure).",
+                  "mitigation": "Use generic login error messages (“Invalid credentials”).\n\nDo not expose stack traces to users.\n\nEncrypt stored passwords with strong hashing (e.g., bcrypt, Argon2).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             }
           },
           {
@@ -548,6 +649,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "Lead Security Engineer - Abiola D. Mustapha",
-    "threatTop": 0
+    "threatTop": 7
   }
 }
