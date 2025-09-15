@@ -38,6 +38,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -121,7 +122,6 @@
               ]
             },
             "id": "7461cde7-fdfe-463f-9419-5830050e0471",
-            "zIndex": 1,
             "data": {
               "type": "tm.Actor",
               "name": "User",
@@ -186,6 +186,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 2,
             "ports": {
               "groups": {
                 "top": {
@@ -269,7 +270,6 @@
               ]
             },
             "id": "298c09b3-033b-4320-babe-f8e8c1101684",
-            "zIndex": 2,
             "data": {
               "type": "tm.Process",
               "name": "Web App",
@@ -359,6 +359,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 3,
             "ports": {
               "groups": {
                 "top": {
@@ -442,7 +443,6 @@
               ]
             },
             "id": "9faf65d2-ba7d-4e88-b6db-87652698d08c",
-            "zIndex": 3,
             "data": {
               "type": "tm.Store",
               "name": "User Database",
@@ -634,11 +634,19 @@
             },
             "vertices": [
               {
-                "x": 480,
-                "y": 120
+                "x": 500,
+                "y": 140
               },
               {
-                "x": 550,
+                "x": 520,
+                "y": 80
+              },
+              {
+                "x": 570,
+                "y": 30
+              },
+              {
+                "x": 640,
                 "y": 30
               }
             ]
