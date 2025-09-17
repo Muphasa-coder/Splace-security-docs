@@ -2728,8 +2728,8 @@
                 "text": "Order Service"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -2826,15 +2826,91 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "0d2e4c12-afde-4080-9e16-cb2b9fda8662",
+                  "title": "Internal Services Boundary",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "One service impersonates another ",
+                  "mitigation": " mTLS between services.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
+                },
+                {
+                  "id": "d872d7d0-c837-4fa6-97da-9c565d6a6707",
+                  "title": "Internal Services B",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Modified API requests internally ",
+                  "mitigation": "Input validation, schema validation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 33,
+                  "score": ""
+                },
+                {
+                  "id": "f85ac67d-2e73-4848-9cd3-d78ef611b5c1",
+                  "title": "Internal Services Boundary C",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Repudiation",
+                  "description": "Services not logging requests ",
+                  "mitigation": "Centralized structured logging.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 34,
+                  "score": ""
+                },
+                {
+                  "id": "17c45e17-03e9-4834-887f-45180c82c084",
+                  "title": "Internal Services Boundary D",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Massive fake orders",
+                  "mitigation": "Rate limit.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 35,
+                  "score": ""
+                },
+                {
+                  "id": "ed27146e-a5ab-4a27-a3ad-4fba3238e2f1",
+                  "title": "Internal Services Boundary E",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "Bypass payment flow ",
+                  "mitigation": "Enforce state of machine validation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 36,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 0,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
             },
             "tools": {
               "items": [
+                "boundary",
+                "button-remove",
                 "boundary",
                 "button-remove",
                 "boundary",
@@ -3785,6 +3861,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "Lead Security Engineer - Abiola D. Mustapha",
-    "threatTop": 31
+    "threatTop": 36
   }
 }
