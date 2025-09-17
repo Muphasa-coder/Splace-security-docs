@@ -1993,6 +1993,43 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -2434,8 +2471,8 @@
                 "text": "Auth Service"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -2532,12 +2569,99 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "9f24eef4-2a46-4751-9421-c60cdec33091",
+                  "title": "User Identity Spoofing",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "One service impersonates another",
+                  "mitigation": "mTLS between services",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
+                },
+                {
+                  "id": "e3802a5a-d109-4987-a6f7-eda3837cb768",
+                  "title": "Credential Tampering in Transit",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Modified API requests internally",
+                  "mitigation": "Input validation, schema validation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                },
+                {
+                  "id": "6fb4ce0a-1e83-41e6-baa3-b8ed991b45ec",
+                  "title": "Lack of Login Audit Trails",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Services not logging requests ",
+                  "mitigation": "Centralized Structured logging",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": ""
+                },
+                {
+                  "id": "e95fb666-acad-4d1a-b16b-dd82e0b7dd01",
+                  "title": "Leakage of Sensitive Login Data",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Excessive data exposure",
+                  "mitigation": "Enforce minimal data in responses",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": ""
+                },
+                {
+                  "id": "1e40f4cb-e8bc-4394-832b-7fc2a2451f0e",
+                  "title": "Login Brute Force or DoS Attack",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Overloading services with heavy queries",
+                  "mitigation": "Circuit breakers, autoscaling",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": ""
+                },
+                {
+                  "id": "491b6abc-5ce7-4f58-873d-c43285cbf80b",
+                  "title": "Privilege Escalation via Weak Access Controls",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "Bypass authz checks",
+                  "mitigation": "Consistent RBAC enforced across services",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
             }
           },
           {
@@ -3454,8 +3578,8 @@
           },
           {
             "position": {
-              "x": 980,
-              "y": -60
+              "x": 950,
+              "y": -250.0000000000005
             },
             "size": {
               "width": 112.5,
@@ -3506,6 +3630,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "Lead Security Engineer - Abiola D. Mustapha",
-    "threatTop": 19
+    "threatTop": 25
   }
 }
