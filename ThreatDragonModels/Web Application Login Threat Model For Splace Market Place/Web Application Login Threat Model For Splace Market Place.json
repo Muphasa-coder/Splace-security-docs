@@ -19,6 +19,90 @@
         "cells": [
           {
             "position": {
+              "x": -190.00000000000097,
+              "y": 140.0000000000013
+            },
+            "size": {
+              "width": 590,
+              "height": 180
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "id": "d87e3c42-9a0a-4941-8013-16cacd1b88be",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 19.999999999999375,
+              "y": 40.00000000000074
+            },
+            "size": {
+              "width": 620,
+              "height": 400
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "42743d32-e9a9-4e51-b9fe-36a7b2180aa0",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 787.9999999999986,
+              "y": -190.0000000000005
+            },
+            "size": {
+              "width": 350,
+              "height": 850
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "ac96e0f3-30b4-4582-8c99-5d48490e73e5",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1220,
+              "y": -119.99999999999972
+            },
+            "size": {
+              "width": 180,
+              "height": 630
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "b0273ae1-cbf4-4a9d-821d-97e79ede6cd6",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
               "x": -350,
               "y": 200
             },
@@ -1275,82 +1359,7 @@
               "cell": "96c71e7e-f614-47db-9465-88fa7140e22c",
               "port": "bc1853e3-4519-452b-819c-981c63c1f756"
             },
-            "vertices": [],
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead"
-              ],
-              "name": null
-            }
+            "vertices": []
           },
           {
             "shape": "flow",
@@ -3208,6 +3217,102 @@
               "storesCredentials": false,
               "storesInventory": false,
               "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": -280,
+              "y": 120
+            },
+            "size": {
+              "width": 400,
+              "height": 120
+            },
+            "attrs": {
+              "text": {
+                "text": "Internet Boundary\n"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "63c2e081-c6ea-4c03-a82a-5836001da5db",
+            "zIndex": 27,
+            "data": {
+              "type": "tm.Text",
+              "name": "Internet Boundary\n",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 224,
+              "y": 40.00000000000074
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Internal Services Boundary"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "05a80cd8-4be5-41a2-92cc-eb82bcc0fb9f",
+            "zIndex": 28,
+            "data": {
+              "type": "tm.Text",
+              "name": "Internal Services Boundary",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 980,
+              "y": -60
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Data Layer Boundary"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "f7c82e19-1a42-431c-8182-1e0f9a12d1b6",
+            "zIndex": 29,
+            "data": {
+              "type": "tm.Text",
+              "name": "Data Layer Boundary",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1250,
+              "y": 428
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Vendor Boundary"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "dcf024cb-3182-49de-a3e4-ff04bb9d18a7",
+            "zIndex": 30,
+            "data": {
+              "type": "tm.Text",
+              "name": "Vendor Boundary",
+              "hasOpenThreats": false
             }
           }
         ],
