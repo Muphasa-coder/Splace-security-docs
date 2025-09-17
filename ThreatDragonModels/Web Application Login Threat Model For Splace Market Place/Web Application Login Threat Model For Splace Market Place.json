@@ -374,16 +374,42 @@
               "storesInventory": false,
               "threats": [
                 {
-                  "id": "795f704c-a520-4a97-b4a0-5e849ea997b6",
-                  "title": "Leakage of Sensitive Login Data",
+                  "id": "e05a452a-5f51-40dd-9e52-19e58ab698f6",
+                  "title": "Scraping",
                   "status": "Open",
                   "severity": "High",
                   "type": "Information disclosure",
-                  "description": "The system could expose sensitive information (e.g., error messages revealing valid usernames or DB structure).",
-                  "mitigation": "Use generic login error messages (“Invalid credentials”).\n\nDo not expose stack traces to users.\n\nEncrypt stored passwords with strong hashing (e.g., bcrypt, Argon2).",
+                  "description": "See OWASP Automated Threat #11:\nCollecting accessible data and/or processed output from the application",
+                  "mitigation": "Detect fake or compromised accounts, ensure information is accessible only with authentication and authorisation",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 4,
+                  "number": 58,
+                  "score": ""
+                },
+                {
+                  "id": "fc8cdd98-3532-46df-9fc2-62f36e6a294c",
+                  "title": "Skewing",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #16:\nAutomated repeated clicking or requesting or submitting content, affecting application based metrics such as counts, and measures of frequency and/or rate",
+                  "mitigation": "Defences include control of interaction frequency or proper enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 59,
+                  "score": ""
+                },
+                {
+                  "id": "bd55ac11-4ba3-4a77-b881-e43dc97f8bca",
+                  "title": "Spamming",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #17:\nStoring malicious such as malware, Iframe distribution, photographs & videos, advertisements, referrer spam and tracking/surveillance code",
+                  "mitigation": "Defences include detecting embedded malicious code, controling interaction frequency and enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 60,
                   "score": ""
                 }
               ],
@@ -1421,8 +1447,8 @@
                 "text": "Payment Provider"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -1519,9 +1545,27 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "4cdbed2b-e83f-4690-9649-c48ed63443cf",
+                  "title": "No Suggestions available",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "",
+                  "description": "No suggestions available for this context. Add one manually please",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 73,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "repudiation": 0
+              }
             }
           },
           {
@@ -1538,8 +1582,8 @@
                 "text": "KYC/Identity Provider"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -1636,9 +1680,27 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "6b1ee4f9-5835-4e2e-b152-e5618d0dd9fc",
+                  "title": "No Suggestions available",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "",
+                  "description": "No suggestions available for this context. Add one manually please",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 72,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "repudiation": 0
+              }
             }
           },
           {
@@ -1655,8 +1717,8 @@
                 "text": "Analytics"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -1753,9 +1815,27 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "46c9b651-b0fe-435f-a8f0-9e9a3a4c9d8a",
+                  "title": "No Suggestions available",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "",
+                  "description": "No suggestions available for this context. Add one manually please",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 70,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "repudiation": 0
+              }
             }
           },
           {
@@ -1772,8 +1852,8 @@
                 "text": "Email Service"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -1870,9 +1950,27 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "d69af08b-8a49-466d-bcdf-304774bf53d3",
+                  "title": "No Suggestions available",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "",
+                  "description": "No suggestions available for this context. Add one manually please",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 71,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "repudiation": 0
+              }
             }
           },
           {
@@ -1994,90 +2092,64 @@
               "privilegeLevel": "",
               "threats": [
                 {
-                  "id": "dc260740-766b-4ea3-a51d-9741a31c24e6",
-                  "title": "New STRIDE threat",
+                  "id": "2b53b9f0-da17-42eb-b31b-cac1cbecf3ce",
+                  "title": "Expedition",
                   "status": "Open",
-                  "severity": "High",
-                  "type": "Spoofing",
-                  "description": "One service impersonates another",
-                  "mitigation": "mTLS between services",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "See OWASP Automated Threat #6:\nUsing speed to violate explicit or implicit assumptions about the application’s normal use to achieve unfair individual gain",
+                  "mitigation": "Defences include providing enforcement of behavioral workflow and anti-automation",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 26,
+                  "number": 44,
                   "score": ""
                 },
                 {
-                  "id": "3c8e502c-87a5-4d94-8496-51efac504c94",
-                  "title": "New STRIDE threat",
+                  "id": "a15087df-7b49-4ffa-a9b3-a07bd95693d0",
+                  "title": "Expedition",
                   "status": "Open",
                   "severity": "High",
                   "type": "Tampering",
-                  "description": "Modified API requests internally",
-                  "mitigation": "Input validation , schema validation",
+                  "description": "See OWASP Automated Threat #6:\nUsing speed to violate explicit or implicit assumptions about the application’s normal use to achieve unfair individual gain",
+                  "mitigation": "Defences include providing enforcement of behavioral workflow and anti-automation",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 27,
+                  "number": 45,
                   "score": ""
                 },
                 {
-                  "id": "bab058e1-b142-479e-8f9b-9ccb1cacf699",
-                  "title": "New STRIDE threat",
+                  "id": "b9317280-4cc4-4b71-93d7-f1b0bbcd81e1",
+                  "title": "Vulnerability scanning",
                   "status": "Open",
-                  "severity": "Medium",
-                  "type": "Repudiation",
-                  "description": "Services not logging requests",
-                  "mitigation": "Centralized structured logging",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 28,
-                  "score": ""
-                },
-                {
-                  "id": "c0511bb1-1a78-4aa4-9052-53e3552fabcc",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "Medium",
+                  "severity": "High",
                   "type": "Information disclosure",
-                  "description": "Excessive data exposure",
-                  "mitigation": "Enforce minimal data in responses",
+                  "description": "See OWASP Automated Threat #14:\nSystematic enumeration and examination in order to find weaknesses and points where a security vulnerability might exist",
+                  "mitigation": "Defence includes providing anti-automation",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 29,
+                  "number": 46,
                   "score": ""
                 },
                 {
-                  "id": "239cd2d8-e54c-41bc-b686-c32e7869b4c9",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "Overloading services with heavy queries",
-                  "mitigation": "Circuit breakers, autoscaling",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 30,
-                  "score": ""
-                },
-                {
-                  "id": "6f03d559-bbf0-4f6c-b546-7dc429c0f2fd",
-                  "title": "New STRIDE threat",
+                  "id": "1000d7c8-a1a2-4ff0-b575-734bcb783787",
+                  "title": "Denial of Service",
                   "status": "Open",
                   "severity": "Critical",
                   "type": "Elevation of privilege",
-                  "description": "Bypass authZ checks",
-                  "mitigation": "Consistent RBAC enforced across services",
+                  "description": "See OWASP Automated Threat #15:\nUsage may resemble legitimate application usage but leads to exhaustion of resources",
+                  "mitigation": "Mitigation or prevention such as providing backoff, resource management and avoiding forced deadlock",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 31,
+                  "number": 47,
                   "score": ""
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
-                "tampering": 2,
-                "repudiation": 1,
+                "spoofing": 0,
+                "tampering": 3,
+                "repudiation": 0,
                 "informationDisclosure": 1,
-                "denialOfService": 1,
+                "denialOfService": 0,
                 "elevationOfPrivilege": 1
               }
             }
@@ -2201,103 +2273,53 @@
               "privilegeLevel": "",
               "threats": [
                 {
-                  "id": "410ad5a4-8eed-4a75-92fa-be483692d4d3",
-                  "title": "User Identity Spoofing",
-                  "status": "Open",
-                  "severity": "High",
-                  "type": "Spoofing",
-                  "description": "An attacker may attempt to impersonate a legitimate user by stealing or forging credentials.",
-                  "mitigation": "Enforce strong password policies.\n\nUse MFA (Multi-Factor Authentication).\n\nLock accounts after multiple failed login attempts.\n\nImplement secure session management.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 14,
-                  "score": ""
-                },
-                {
-                  "id": "933add0c-960a-4670-9d2d-7161f43177b4",
-                  "title": "Credential Tampering in Transit",
+                  "id": "1f40a164-e276-46e4-bf08-41d0216a22d0",
+                  "title": "Expedition",
                   "status": "Open",
                   "severity": "High",
                   "type": "Tampering",
-                  "description": "Credentials (username, password) could be intercepted and modified if transmitted in plain text.",
-                  "mitigation": "Use HTTPS/TLS with strong ciphers.\n\nApply HSTS (HTTP Strict Transport Security).\n\nUse signed session tokens.",
+                  "description": "See OWASP Automated Threat #6:\nUsing speed to violate explicit or implicit assumptions about the application’s normal use to achieve unfair individual gain",
+                  "mitigation": "Defences include providing enforcement of behavioral workflow and anti-automation",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 15,
+                  "number": 51,
                   "score": ""
                 },
                 {
-                  "id": "61e0662e-af0b-45b3-9cd4-14d9e3903f39",
-                  "title": "Lack of Login Audit Trails",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Repudiation",
-                  "description": "If login attempts are not logged, users (or attackers) could deny malicious activity.",
-                  "mitigation": "Implement logging for authentication attempts (success & failure).\n\nStore logs securely with integrity protection.\n\nRegularly review logs for anomalies.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 16,
-                  "score": ""
-                },
-                {
-                  "id": "ce0a971e-5609-433e-a511-e7e52d4ce058",
-                  "title": "Leakage of Sensitive Login Data",
+                  "id": "35023332-bdb2-4003-9d3e-f148b42259c5",
+                  "title": "Vulnerability scanning",
                   "status": "Open",
                   "severity": "High",
                   "type": "Information disclosure",
-                  "description": "Provide a description for this threatThe system could expose sensitive information (e.g., error messages revealing valid usernames or DB structure).",
-                  "mitigation": "Use generic login error messages (“Invalid credentials”).\n\nDo not expose stack traces to users.\n\nEncrypt stored passwords with strong hashing (e.g., bcrypt, Argon2).",
+                  "description": "See OWASP Automated Threat #14:\nSystematic enumeration and examination in order to find weaknesses and points where a security vulnerability might exist",
+                  "mitigation": "Defence includes providing anti-automation",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 17,
+                  "number": 52,
                   "score": ""
                 },
                 {
-                  "id": "f005de2e-2ee6-4443-880a-f3289d513594",
-                  "title": "Login Brute Force or DoS Attack",
+                  "id": "c5b0e2de-a8f1-40cf-bddf-c3ce4e8f7b43",
+                  "title": "Denial of Service",
                   "status": "Open",
                   "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "Attackers may flood the login endpoint with requests, causing system unavailability.",
-                  "mitigation": "Rate-limit login attempts.\n\nImplement CAPTCHA for repeated failed logins.\n\nMonitor and block suspicious IPs.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 18,
-                  "score": ""
-                },
-                {
-                  "id": "0649873c-7dde-4fec-be8d-a7885bda29be",
-                  "title": "Privilege Escalation via Weak Access Controls",
-                  "status": "Open",
-                  "severity": "Critical",
                   "type": "Elevation of privilege",
-                  "description": "A normal user could exploit flaws in session handling or authorization to gain admin access.",
-                  "mitigation": "Implement role-based access control (RBAC).\n\nValidate user authorization on every request.\n\nRegularly test for privilege escalation vulnerabilities.",
+                  "description": "See OWASP Automated Threat #15:\nUsage may resemble legitimate application usage but leads to exhaustion of resources",
+                  "mitigation": "Mitigation or prevention such as providing backoff, resource management and avoiding forced deadlock",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 19,
+                  "number": 53,
                   "score": ""
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 0,
                 "tampering": 1,
-                "repudiation": 1,
+                "repudiation": 0,
                 "informationDisclosure": 1,
-                "denialOfService": 1,
+                "denialOfService": 0,
                 "elevationOfPrivilege": 1
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -2626,90 +2648,51 @@
               "privilegeLevel": "",
               "threats": [
                 {
-                  "id": "9f24eef4-2a46-4751-9421-c60cdec33091",
-                  "title": "User Identity Spoofing",
-                  "status": "Open",
-                  "severity": "High",
-                  "type": "Spoofing",
-                  "description": "One service impersonates another",
-                  "mitigation": "mTLS between services",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 20,
-                  "score": ""
-                },
-                {
-                  "id": "e3802a5a-d109-4987-a6f7-eda3837cb768",
-                  "title": "Credential Tampering in Transit",
+                  "id": "d604183b-6889-41ca-97de-51a82d8c876c",
+                  "title": "Expedition",
                   "status": "Open",
                   "severity": "High",
                   "type": "Tampering",
-                  "description": "Modified API requests internally",
-                  "mitigation": "Input validation, schema validation",
+                  "description": "See OWASP Automated Threat #6:\nUsing speed to violate explicit or implicit assumptions about the application’s normal use to achieve unfair individual gain",
+                  "mitigation": "Defences include providing enforcement of behavioral workflow and anti-automation",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 21,
+                  "number": 48,
                   "score": ""
                 },
                 {
-                  "id": "6fb4ce0a-1e83-41e6-baa3-b8ed991b45ec",
-                  "title": "Lack of Login Audit Trails",
+                  "id": "736f9b6c-d946-4bbd-ad5d-47609c7b9620",
+                  "title": "Vulnerability scanning",
                   "status": "Open",
-                  "severity": "Medium",
-                  "type": "Repudiation",
-                  "description": "Services not logging requests ",
-                  "mitigation": "Centralized Structured logging",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 22,
-                  "score": ""
-                },
-                {
-                  "id": "e95fb666-acad-4d1a-b16b-dd82e0b7dd01",
-                  "title": "Leakage of Sensitive Login Data",
-                  "status": "Open",
-                  "severity": "Medium",
+                  "severity": "High",
                   "type": "Information disclosure",
-                  "description": "Excessive data exposure",
-                  "mitigation": "Enforce minimal data in responses",
+                  "description": "See OWASP Automated Threat #14:\nSystematic enumeration and examination in order to find weaknesses and points where a security vulnerability might exist",
+                  "mitigation": "Defence includes providing anti-automation",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 23,
+                  "number": 49,
                   "score": ""
                 },
                 {
-                  "id": "1e40f4cb-e8bc-4394-832b-7fc2a2451f0e",
-                  "title": "Login Brute Force or DoS Attack",
+                  "id": "1a9c0bcf-b669-4e89-a7d4-ae210818ed7f",
+                  "title": "Denial of Service",
                   "status": "Open",
                   "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "Overloading services with heavy queries",
-                  "mitigation": "Circuit breakers, autoscaling",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 24,
-                  "score": ""
-                },
-                {
-                  "id": "491b6abc-5ce7-4f58-873d-c43285cbf80b",
-                  "title": "Privilege Escalation via Weak Access Controls",
-                  "status": "Open",
-                  "severity": "Critical",
                   "type": "Elevation of privilege",
-                  "description": "Bypass authz checks",
-                  "mitigation": "Consistent RBAC enforced across services",
+                  "description": "See OWASP Automated Threat #15:\nUsage may resemble legitimate application usage but leads to exhaustion of resources",
+                  "mitigation": "Mitigation or prevention such as providing backoff, resource management and avoiding forced deadlock",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 25,
+                  "number": 50,
                   "score": ""
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 0,
                 "tampering": 1,
-                "repudiation": 1,
+                "repudiation": 0,
                 "informationDisclosure": 1,
-                "denialOfService": 1,
+                "denialOfService": 0,
                 "elevationOfPrivilege": 1
               }
             }
@@ -2906,113 +2889,6 @@
                 "denialOfService": 1,
                 "elevationOfPrivilege": 1
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -3029,11 +2905,13 @@
                 "text": "Order DB"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -3130,13 +3008,59 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "116a26e6-e08b-4a76-88bf-35cdfce372b8",
+                  "title": "Scraping",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #11:\nCollecting accessible data and/or processed output from the application",
+                  "mitigation": "Detect fake or compromised accounts, ensure information is accessible only with authentication and authorisation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 64,
+                  "score": ""
+                },
+                {
+                  "id": "4a5e19a3-0ddf-494f-9c94-c76a44f39ada",
+                  "title": "Skewing",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #16:\nAutomated repeated clicking or requesting or submitting content, affecting application based metrics such as counts, and measures of frequency and/or rate",
+                  "mitigation": "Defences include control of interaction frequency or proper enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 65,
+                  "score": ""
+                },
+                {
+                  "id": "3d273f0c-b3e5-42e6-8ab4-bfc9b43996cd",
+                  "title": "Spamming",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #17:\nStoring malicious such as malware, Iframe distribution, photographs & videos, advertisements, referrer spam and tracking/surveillance code",
+                  "mitigation": "Defences include detecting embedded malicious code, controling interaction frequency and enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 66,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             }
           },
           {
@@ -3153,11 +3077,13 @@
                 "text": "Object Storage"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -3254,13 +3180,59 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "cd1af4ed-7e5a-4566-be3d-f0861b5a9d58",
+                  "title": "Scraping",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #11:\nCollecting accessible data and/or processed output from the application",
+                  "mitigation": "Detect fake or compromised accounts, ensure information is accessible only with authentication and authorisation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 61,
+                  "score": ""
+                },
+                {
+                  "id": "f1fa7696-f024-46fc-9470-309616259d71",
+                  "title": "Skewing",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #16:\nAutomated repeated clicking or requesting or submitting content, affecting application based metrics such as counts, and measures of frequency and/or rate",
+                  "mitigation": "Defences include control of interaction frequency or proper enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 62,
+                  "score": ""
+                },
+                {
+                  "id": "009b081d-f5a3-4f93-a690-d8a6dfb72e04",
+                  "title": "Spamming",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #17:\nStoring malicious such as malware, Iframe distribution, photographs & videos, advertisements, referrer spam and tracking/surveillance code",
+                  "mitigation": "Defences include detecting embedded malicious code, controling interaction frequency and enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 63,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             }
           },
           {
@@ -3277,11 +3249,13 @@
                 "text": "Logs / SIEM"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -3378,13 +3352,59 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "5fca88ab-21df-455d-b6d2-bfeee5317499",
+                  "title": "Scraping",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #11:\nCollecting accessible data and/or processed output from the application",
+                  "mitigation": "Detect fake or compromised accounts, ensure information is accessible only with authentication and authorisation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 67,
+                  "score": ""
+                },
+                {
+                  "id": "bb6d4060-0eca-4ae3-b248-979769238f59",
+                  "title": "Skewing",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #16:\nAutomated repeated clicking or requesting or submitting content, affecting application based metrics such as counts, and measures of frequency and/or rate",
+                  "mitigation": "Defences include control of interaction frequency or proper enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 68,
+                  "score": ""
+                },
+                {
+                  "id": "bb6644c6-ccbd-4787-af6a-320e3c81f22b",
+                  "title": "Spamming",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #17:\nStoring malicious such as malware, Iframe distribution, photographs & videos, advertisements, referrer spam and tracking/surveillance code",
+                  "mitigation": "Defences include detecting embedded malicious code, controling interaction frequency and enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 69,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             }
           },
           {
@@ -3401,11 +3421,13 @@
                 "text": "Cache (Redis)"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -3502,13 +3524,59 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "aba229a3-73fe-4611-999a-6ad12d1c045a",
+                  "title": "Scraping",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #11:\nCollecting accessible data and/or processed output from the application",
+                  "mitigation": "Detect fake or compromised accounts, ensure information is accessible only with authentication and authorisation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 41,
+                  "score": ""
+                },
+                {
+                  "id": "1c6c5093-2ab9-4aa6-8878-621e449b01f2",
+                  "title": "Skewing",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #16:\nAutomated repeated clicking or requesting or submitting content, affecting application based metrics such as counts, and measures of frequency and/or rate",
+                  "mitigation": "Defences include control of interaction frequency or proper enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 42,
+                  "score": ""
+                },
+                {
+                  "id": "9ac955e5-e103-4a14-bb9c-065a92264dca",
+                  "title": "Spamming",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #17:\nStoring malicious such as malware, Iframe distribution, photographs & videos, advertisements, referrer spam and tracking/surveillance code",
+                  "mitigation": "Defences include detecting embedded malicious code, controling interaction frequency and enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 43,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             }
           },
           {
@@ -3525,11 +3593,13 @@
                 "text": "Message Queue"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -3626,13 +3696,59 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "2a1174ed-6f5b-43bc-9a1c-33973fd00ece",
+                  "title": "Message Queue",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Poison messages injected",
+                  "mitigation": "Signed/encrypted massages.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 37,
+                  "score": ""
+                },
+                {
+                  "id": "3207f5b3-d030-4e3f-8af0-1258cca582cf",
+                  "title": "Message Queue B",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Queue flooding",
+                  "mitigation": "Quotas, Monitoring.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 38,
+                  "score": ""
+                },
+                {
+                  "id": "20408d39-cca3-469c-80a8-cae152d80e07",
+                  "title": "Message Queue C",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "No trace of consumed events",
+                  "mitigation": "Enable event logging.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 39,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 0,
+                "denialOfService": 1
+              }
             }
           },
           {
@@ -3649,11 +3765,13 @@
                 "text": "Secrets Manager / KMS"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -3750,22 +3868,68 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "c7b6d1b9-4981-451f-acbc-8c1054ac7cdd",
+                  "title": "Scraping",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "See OWASP Automated Threat #11:\nCollecting accessible data and/or processed output from the application",
+                  "mitigation": "Detect fake or compromised accounts, ensure information is accessible only with authentication and authorisation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 54,
+                  "score": ""
+                },
+                {
+                  "id": "166c34c5-7860-4b66-a879-ba8019f0539c",
+                  "title": "Skewing",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #16:\nAutomated repeated clicking or requesting or submitting content, affecting application based metrics such as counts, and measures of frequency and/or rate",
+                  "mitigation": "Defences include control of interaction frequency or proper enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 55,
+                  "score": ""
+                },
+                {
+                  "id": "25f06569-d81a-427e-b136-1e7e9940a97d",
+                  "title": "Spamming",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "See OWASP Automated Threat #17:\nStoring malicious such as malware, Iframe distribution, photographs & videos, advertisements, referrer spam and tracking/surveillance code",
+                  "mitigation": "Defences include detecting embedded malicious code, controling interaction frequency and enforcement of a single unique action",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 57,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             }
           },
           {
             "position": {
-              "x": -280,
-              "y": 120
+              "x": -190.00000000000097,
+              "y": 110
             },
             "size": {
-              "width": 400,
+              "width": 220,
               "height": 120
             },
             "attrs": {
@@ -3861,6 +4025,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "Lead Security Engineer - Abiola D. Mustapha",
-    "threatTop": 36
+    "threatTop": 73
   }
 }
