@@ -1,0 +1,25 @@
+name: DAST Staging
+
+on:
+  workflow_dispatch:   # manual trigger (you control when staging is ready)
+
+jobs:
+  zap-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run OWASP ZAP Full Scan
+        uses: zaproxy/action-full-scan@v0.7.0
+        with:
+          target: "https://staging.myapp.com"
+          cmd_options: "-a"   # -a = active scan
+
+  nuclei-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Run Nuclei Scan
+        uses: projectdiscovery/nuclei-action@main
+        with:
+          target: "https://staging.myapp.com"
+

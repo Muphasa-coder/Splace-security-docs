@@ -1,0 +1,30 @@
+name: IaC Scan
+
+on:
+  pull_request:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  checkov:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Checkov IaC Scan
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: .
+          quiet: true
+          soft_fail: false   # set true if you want warnings only
+
+  trivy-iac:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Trivy IaC Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'config'
+          format: 'table'
+          exit-code: '1'
+
