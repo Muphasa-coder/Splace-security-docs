@@ -1,8 +1,10 @@
 name: Security Scans
+
 permissions:
-  contents: read       # for checking out code
-  security-events:    # for uploading security scan results
-  pull-requests:    # if it needs to comment on PRs
+  contents: read           # needed to checkout code
+  security-events: write   # needed for uploading security scan results (SARIF etc.)
+  pull-requests: read      # use "write" ONLY if workflow needs to post comments on PRs
+
 on:
   push:
     branches: [ "main" ]
@@ -21,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.11'   # pinned for reproducibility
 
       - name: Install Bandit
         run: pip install bandit
