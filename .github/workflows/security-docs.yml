@@ -25,7 +25,11 @@ jobs:
         run: pip install bandit
 
       - name: Run Bandit
-        run: bandit -r . -f sarif -o bandit.sarif || true
+        run: |
+          bandit -r . -f sarif -o bandit.sarif || true
+          if [ ! -s bandit.sarif ]; then
+            echo '{}' > bandit.sarif
+          fi
 
       - name: Upload Bandit results
         uses: github/codeql-action/upload-sarif@v2
@@ -49,8 +53,12 @@ jobs:
       - name: Run npm audit
         run: |
           npm install --package-lock-only
-          npm audit --json > npm-audit.json
-          sarif-multitool convert npm-audit.json --output npm-audit.sarif || true
+          npm audit --json > npm-audit.json || true
+          if [ -s npm-audit.json ]; then
+            sarif-multitool convert npm-audit.json --output npm-audit.sarif || true
+          else
+            echo '{}' > npm-audit.sarif
+          fi
 
       - name: Upload npm audit results
         uses: github/codeql-action/upload-sarif@v2
