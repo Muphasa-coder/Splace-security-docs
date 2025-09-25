@@ -15,44 +15,65 @@ jobs:
   bandit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install bandit
-      - run: bandit -r . -f sarif -o bandit-report.sarif
-      - uses: github/codeql-action/upload-sarif@v3
+
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit scan
+        run: bandit -r . -f sarif -o bandit-report.sarif
+
+      - name: Upload Bandit SARIF
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: bandit-report.sarif
 
   npm-audit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
-      - run: |
+
+      - name: Run npm audit and convert to SARIF
+        run: |
           if [ -f package.json ]; then
             npm install
             npm audit --json > npm-audit.json
             npx npm-audit-to-sarif npm-audit.json > npm-audit.sarif
           fi
-      - uses: github/codeql-action/upload-sarif@v3
+
+      - name: Upload npm-audit SARIF
         if: always()
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: npm-audit.sarif
 
   trivy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: aquasecurity/trivy-action@master
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy scan
+        uses: aquasecurity/trivy-action@master
         with:
           scan-type: fs
           format: sarif
           output: trivy-report.sarif
           severity: HIGH,CRITICAL
-      - uses: github/codeql-action/upload-sarif@v3
+
+      - name: Upload Trivy SARIF
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: trivy-report.sarif
