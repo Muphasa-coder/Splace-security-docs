@@ -1,23 +1,52 @@
-name: Security Scans
-
-permissions:
-  contents: read
-  security-events: write
-  pull-requests: read
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+  pull-requests: read
+  security-events: write
+
 jobs:
   security:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # Python security scan
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: pip install bandit
-      - run: bandit -r .
+      - run: bandit -r . -f sarif -o bandit-report.sarif
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: bandit-report.sarif
+
+      # Node.js dependency audit
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: |
+          if [ -f package.json ]; then
+            npm install
+            npm audit --json > npm-audit.json
+            npx npm-audit-to-sarif npm-audit.json > npm-audit.sarif
+          fi
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: npm-audit.sarif
+
+      # Trivy scan
+      - uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          format: sarif
+          output: trivy-report.sarif
+          severity: HIGH,CRITICAL
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-report.sarif
