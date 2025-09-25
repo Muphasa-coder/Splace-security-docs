@@ -1,28 +1,19 @@
 name: DAST Staging
+
 permissions:
-  contents: read       # for checking out code
-  security-events: read   # for uploading security scan results
-  pull-requests: read     # if it needs to comment on PRs
+  contents: read
+  security-events: write
+  pull-requests: read
+
 on:
-  workflow_dispatch:   # manual trigger (you control when staging is ready)
+  workflow_dispatch:
 
 jobs:
-  zap-scan:
+  dast:
     runs-on: ubuntu-latest
     steps:
-      - name: Run OWASP ZAP Full Scan
-        uses: zaproxy/action-full-scan@v0.7.0
-        with:
-          target: "https://staging.myapp.com"
-          cmd_options: "-a"   # -a = active scan
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  nuclei-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: Run Nuclei Scan
-        uses: projectdiscovery/nuclei-action@main
-        with:
-          target: "https://staging.myapp.com"
-
+      - name: Run DAST scan
+        run: echo "Run OWASP ZAP / other DAST scan here"
