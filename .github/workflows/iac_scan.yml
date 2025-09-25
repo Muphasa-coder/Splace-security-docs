@@ -1,19 +1,27 @@
 name: IaC Scan
 
-permissions:
-  contents: read
-  security-events: write
-  pull-requests: read
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+  pull-requests: read
+  security-events: write
+
 jobs:
-  iac-scan:
+  iac:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Run tfsec / checkov / terrascan here"
+
+      - uses: bridgecrewio/checkov-action@v12
+        with:
+          output_format: sarif
+          output_file_path: checkov-report.sarif
+
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: checkov-report.sarif
