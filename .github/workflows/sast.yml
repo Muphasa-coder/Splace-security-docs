@@ -26,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'python', 'javascript' ]  # ✅ Correct syntax
+        language: ['javascript' ]  # ✅ Correct syntax
     steps:
       - uses: actions/checkout@v3
       - name: Initialize CodeQL
