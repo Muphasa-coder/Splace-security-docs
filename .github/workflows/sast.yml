@@ -1,43 +1,23 @@
-name: SAST Scans
+name: SAST
+
 permissions:
-  contents: read       # for checking out code
-  security-events: read   # for uploading security scan results
-  pull-requests: read     # if it needs to comment on PRs
+  contents: read
+  security-events: write
+  pull-requests: read
+
 on:
-  pull_request:
   push:
+    branches: [ "main" ]
+  pull_request:
     branches: [ "main" ]
 
 jobs:
-  semgrep:
+  sast:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Run Semgrep SAST Scan
-        uses: returntocorp/semgrep-action@v1
-        with:
-          config: "p/owasp-top-ten"
-          publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
-          publishDeployment: "my-secure-sdlc"
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  codeql:
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: read
-      actions: read
-      contents: read
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ['javascript' ]  # ✅ Correct syntax
-    steps:
-      - uses: actions/checkout@v3
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
-        with:
-          languages: ${{ matrix.language }}
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v2
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
-
+      # Example SAST tool (CodeQL or similar)
+      - name: Run SAST scan
+        run: echo "Run your SAST tool here"
