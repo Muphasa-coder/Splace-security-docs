@@ -2,9 +2,9 @@ name: Security Scans
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: read
@@ -29,11 +29,11 @@ jobs:
       - name: Run Bandit scan
         run: bandit -r . -f sarif -o bandit-report.sarif
 
-      - name: Upload npm-audit SARIF
-  if: ${{ always() && exists('npm-audit.sarif') }}
-  uses: github/codeql-action/upload-sarif@v3
-  with:
-    sarif_file: npm-audit.sarif
+      - name: Upload Bandit SARIF
+        if: ${{ always() && exists('bandit-report.sarif') }}
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: bandit-report.sarif
 
   npm-audit:
     runs-on: ubuntu-latest
