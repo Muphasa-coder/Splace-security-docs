@@ -1,16 +1,16 @@
-name: DAST Staging
-
-permissions:
-  contents: read
-  security-events: write
-  pull-requests: read
+name: DAST Scan
 
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+  security-events: write
 
 jobs:
   dast:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Run OWASP ZAP or other DAST scan"
+      - run: echo "Run OWASP ZAP or other DAST tool here"
