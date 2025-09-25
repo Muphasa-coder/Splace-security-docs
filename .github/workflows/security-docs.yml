@@ -2,7 +2,7 @@ name: Security Scans
 
 permissions:
   contents: read           # needed to checkout code
-  security-events: read   # needed for uploading security scan results (SARIF etc.)
+  security-events: write   # needed for uploading security scan results (SARIF etc.)
   pull-requests: read      # use "write" ONLY if workflow needs to post comments on PRs
 
 on:
