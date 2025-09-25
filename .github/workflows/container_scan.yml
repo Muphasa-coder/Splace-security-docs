@@ -1,8 +1,8 @@
 name: Container Scan              
 permissions:
   contents: read       # for checking out code
-  security-events: write   # for uploading security scan results
-  pull-requests: write     # if it needs to comment on PRs
+  security-events: read   # for uploading security scan results
+  pull-requests: read    # if it needs to comment on PRs
 on:
   pull_request:
   push:
