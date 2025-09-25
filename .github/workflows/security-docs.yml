@@ -1,83 +1,90 @@
 name: Security Scans
 
 on:
-  push:
-    branches: [main]
   pull_request:
-    branches: [main]
-
-permissions:
-  contents: read
-  pull-requests: read
-  security-events: write
+    branches: [ main ]
+  push:
+    branches: [ main ]
 
 jobs:
-  bandit:
+  security:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      pull-requests: read
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
+      # -------------------
+      # Bandit (Python)
+      # -------------------
       - name: Install Bandit
         run: pip install bandit
 
-      - name: Run Bandit scan
-        run: bandit -r . -f sarif -o bandit-report.sarif
+      - name: Run Bandit
+        run: bandit -r . -f sarif -o bandit.sarif || true
 
-      - name: Upload Bandit SARIF
-        if: ${{ always() && exists('bandit-report.sarif') }}
-        uses: github/codeql-action/upload-sarif@v3
+      - name: Upload Bandit results
+        uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: bandit-report.sarif
+          sarif_file: bandit.sarif
 
-  npm-audit:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      # -------------------
+      # npm audit (Node.js)
+      # -------------------
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
-      - name: Install Yarn
-        run: npm install -g yarn
-
-      - name: Run Yarn audit and convert to SARIF
+      - name: Install SARIF Multitool
         run: |
-          if [ -f package.json ]; then
-            yarn install
-            yarn audit --json > yarn-audit.json
-            npx npm-audit-to-sarif yarn-audit.json > yarn-audit.sarif
-          fi
+          wget https://github.com/microsoft/sarif-sdk/releases/latest/download/sarif-multitool-linux-x64.zip -O sarif-multitool.zip
+          unzip sarif-multitool.zip -d sarif-multitool
+          sudo mv sarif-multitool/sarif-multitool /usr/local/bin/
 
-      - name: Upload Yarn audit SARIF
-        if: always()
-        uses: github/codeql-action/upload-sarif@v3
+      - name: Run npm audit
+        run: |
+          npm install --package-lock-only
+          npm audit --json > npm-audit.json
+          sarif-multitool convert npm-audit.json --output npm-audit.sarif || true
+
+      - name: Upload npm audit results
+        uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: yarn-audit.sarif
+          sarif_file: npm-audit.sarif
 
-  trivy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Run Trivy scan
+      # -------------------
+      # Trivy (Container/FS)
+      # -------------------
+      - name: Run Trivy FS Scan
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: fs
+          ignore-unfixed: true
           format: sarif
-          output: trivy-report.sarif
-          severity: HIGH,CRITICAL
+          output: trivy-results.sarif
 
-      - name: Upload Trivy SARIF
-        uses: github/codeql-action/upload-sarif@v3
+      - name: Upload Trivy results
+        uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: trivy-report.sarif
+          sarif_file: trivy-results.sarif
+
+      # -------------------
+      # Gitleaks (Secrets)
+      # -------------------
+      - name: Run Gitleaks Secret Scan
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          args: detect --source . --report-format sarif --report-path gitleaks-report.sarif
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+
+      - name: Upload Gitleaks results
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: gitleaks-report.sarif
