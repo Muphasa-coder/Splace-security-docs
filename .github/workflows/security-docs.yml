@@ -46,19 +46,22 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Run npm audit and convert to SARIF
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Run Yarn audit and convert to SARIF
         run: |
           if [ -f package.json ]; then
-            npm install
-            npm audit --json > npm-audit.json
-            npx npm-audit-to-sarif npm-audit.json > npm-audit.sarif
+            yarn install
+            yarn audit --json > yarn-audit.json
+            npx npm-audit-to-sarif yarn-audit.json > yarn-audit.sarif
           fi
 
-      - name: Upload npm-audit SARIF
+      - name: Upload Yarn audit SARIF
         if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: npm-audit.sarif
+          sarif_file: yarn-audit.sarif
 
   trivy:
     runs-on: ubuntu-latest
