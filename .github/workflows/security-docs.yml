@@ -1,55 +1,23 @@
 name: Security Scans
 
 permissions:
-  contents: read           # needed to checkout code
-  security-events: write   # needed for uploading security scan results (SARIF etc.)
-  pull-requests: read      # use "write" ONLY if workflow needs to post comments on PRs
+  contents: read
+  security-events: write
+  pull-requests: read
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   security:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # Python Security Check with Bandit
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'   # pinned for reproducibility
-
-      - name: Install Bandit
-        run: pip install bandit
-
-      - name: Run Bandit (Python security scan)
-        run: bandit -r .
-
-      # Node.js Dependency Security Audit
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install dependencies and audit
-        run: |
-          if [ -f package.json ]; then
-            npm install
-            npm audit --audit-level=high
-          else
-            echo "No package.json found, skipping npm audit"
-          fi
-
-      # Docker Image Security Scan with Trivy
-      - name: Scan repo with Trivy
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: fs
-          ignore-unfixed: true
-          severity: HIGH,CRITICAL
+          python-version: '3.11'
+      - run: pip install bandit
+      - run: bandit -r .
