@@ -1,3 +1,5 @@
+name: Security Scans
+
 on:
   push:
     branches: [ main ]
@@ -10,12 +12,10 @@ permissions:
   security-events: write
 
 jobs:
-  security:
+  bandit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      # Python security scan
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -25,7 +25,10 @@ jobs:
         with:
           sarif_file: bandit-report.sarif
 
-      # Node.js dependency audit
+  npm-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
@@ -40,7 +43,10 @@ jobs:
         with:
           sarif_file: npm-audit.sarif
 
-      # Trivy scan
+  trivy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - uses: aquasecurity/trivy-action@master
         with:
           scan-type: fs
