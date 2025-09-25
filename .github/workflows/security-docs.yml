@@ -101,3 +101,9 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: gitleaks-report.sarif
+
+      # -------------------
+      # Debug: List SARIF outputs
+      # -------------------
+      - name: List SARIF files
+        run: ls -lh *.sarif || true
