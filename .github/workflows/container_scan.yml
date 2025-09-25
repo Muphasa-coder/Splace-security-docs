@@ -1,5 +1,6 @@
-name: Container Scan
-
+name: Container Scan              
+permissions:
+  contents: read
 on:
   pull_request:
   push:
