@@ -1,37 +1,26 @@
-name: Container Scan              
+name: Container Scan
+
 permissions:
-  contents: read       # for checking out code
-  security-events: read   # for uploading security scan results
-  pull-requests: read    # if it needs to comment on PRs
+  contents: read
+  security-events: write
+  pull-requests: read
+
 on:
-  pull_request:
   push:
+    branches: [ "main" ]
+  pull_request:
     branches: [ "main" ]
 
 jobs:
-  trivy-container:
+  container-scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Build Docker image
-        run: docker build -t myapp:latest .
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Run Trivy Container Scan
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'myapp:latest'
-          format: 'table'
-          exit-code: '1'
-          vuln-type: 'os,library'
-
-  grype-container:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build Docker image
-        run: docker build -t myapp:latest .
-      - name: Run Grype Container Scan
-        uses: anchore/scan-action@v3
-        with:
-          image: 'myapp:latest'
-          fail-build: true
-
+          scan-type: image
+          image-ref: your-image:latest
+          severity: HIGH,CRITICAL
