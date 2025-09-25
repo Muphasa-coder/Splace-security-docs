@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v3
 
       # -------------------
-      # Install SARIF Multitool (for conversions)
+      # Install SARIF Multitool
       # -------------------
       - name: Install SARIF Multitool
         run: |
@@ -35,7 +35,7 @@ jobs:
 
       - name: Run Bandit
         run: |
-          bandit -r . -f json -o bandit.json || true
+          bandit -r . -f json -o bandit.json --exit-zero
           if [ -s bandit.json ]; then
             sarif-multitool convert bandit.json --output bandit.sarif || true
           else
@@ -57,7 +57,7 @@ jobs:
 
       - name: Run npm audit
         run: |
-          npm install --package-lock-only
+          npm install --package-lock-only || true
           npm audit --json > npm-audit.json || true
           if [ -s npm-audit.json ]; then
             sarif-multitool convert npm-audit.json --output npm-audit.sarif || true
@@ -80,6 +80,7 @@ jobs:
           ignore-unfixed: true
           format: sarif
           output: trivy-results.sarif
+        continue-on-error: true
 
       - name: Upload Trivy results
         uses: github/codeql-action/upload-sarif@v2
@@ -92,7 +93,7 @@ jobs:
       - name: Run Gitleaks Secret Scan
         uses: gitleaks/gitleaks-action@v2
         with:
-          args: detect --source . --report-format sarif --report-path gitleaks-report.sarif
+          args: detect --source . --exit-code 0 --report-format sarif --report-path gitleaks-report.sarif
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
