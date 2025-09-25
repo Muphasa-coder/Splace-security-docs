@@ -12,8 +12,5 @@ jobs:
   dast:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Run DAST scan
-        run: echo "Run OWASP ZAP / other DAST scan here"
+      - uses: actions/checkout@v4
+      - run: echo "Run OWASP ZAP or other DAST scan"
