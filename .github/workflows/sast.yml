@@ -7,17 +7,13 @@ permissions:
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   sast:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # Example SAST tool (CodeQL or similar)
-      - name: Run SAST scan
-        run: echo "Run your SAST tool here"
+      - uses: actions/checkout@v4
+      - run: echo "Run SAST scan here"
