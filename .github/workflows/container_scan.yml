@@ -1,23 +1,30 @@
 name: Container Scan
 
-permissions:
-  contents: read
-  security-events: write
-  pull-requests: read
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+  pull-requests: read
+  security-events: write
+
 jobs:
-  container-scan:
+  container:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: aquasecurity/trivy-action@master
         with:
           scan-type: image
-          image-ref: your-image:latest
+          image-ref: my-image:latest
+          format: sarif
+          output: trivy-image.sarif
           severity: HIGH,CRITICAL
+
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-image.sarif
