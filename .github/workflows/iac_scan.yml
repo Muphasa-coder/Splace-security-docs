@@ -7,16 +7,13 @@ permissions:
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   iac-scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Run IaC Security Scan
-        run: echo "Run tfsec / checkov / terrascan here"
+      - uses: actions/checkout@v4
+      - run: echo "Run tfsec / checkov / terrascan here"
