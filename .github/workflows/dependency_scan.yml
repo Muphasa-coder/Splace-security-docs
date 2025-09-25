@@ -7,16 +7,13 @@ permissions:
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
-  dependency-scan:
+  dependencies:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Run Dependency Scan
-        run: echo "Run dependency scanning here (npm audit / pip-audit / osv-scanner)"
+      - uses: actions/checkout@v4
+      - run: echo "Run dependency scanning here"
