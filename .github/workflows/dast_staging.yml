@@ -1,5 +1,6 @@
 name: DAST Staging
-
+permissions:
+  contents: read
 on:
   workflow_dispatch:   # manual trigger (you control when staging is ready)
 
