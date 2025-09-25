@@ -1,6 +1,8 @@
 name: Security Scans
 permissions:
-  contents: read
+  contents: read       # for checking out code
+  security-events: write   # for uploading security scan results
+  pull-requests: write     # if it needs to comment on PRs
 on:
   push:
     branches: [ "main" ]
