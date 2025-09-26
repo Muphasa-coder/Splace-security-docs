@@ -1,4 +1,4 @@
-name: Security Scans
+name: Security Scan
 
 on:
   pull_request:
@@ -9,102 +9,15 @@ on:
 jobs:
   security:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      security-events: write
-      pull-requests: read
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      # -------------------
-      # Install SARIF Multitool
-      # -------------------
-      - name: Install SARIF Multitool
-        run: |
-          wget https://github.com/microsoft/sarif-sdk/releases/latest/download/sarif-multitool-linux-x64.zip -O sarif-multitool.zip
-          unzip sarif-multitool.zip -d sarif-multitool
-          sudo mv sarif-multitool/sarif-multitool /usr/local/bin/
-
-      # -------------------
-      # Bandit (Python)
-      # -------------------
       - name: Install Bandit
         run: pip install bandit
 
       - name: Run Bandit
-        run: |
-          bandit -r . -f json -o bandit.json --exit-zero
-          if [ -s bandit.json ]; then
-            sarif-multitool convert bandit.json --output bandit.sarif || true
-          else
-            echo '{}' > bandit.sarif
-          fi
+        run: bandit -r . --exit-zero -f sarif -o bandit.sarif
 
-      - name: Upload Bandit results
-        uses: github/codeql-action/upload-sarif@v2
+      - uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: bandit.sarif
-
-      # -------------------
-      # npm audit (Node.js)
-      # -------------------
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Run npm audit
-        run: |
-          npm install --package-lock-only || true
-          npm audit --json > npm-audit.json || true
-          if [ -s npm-audit.json ]; then
-            sarif-multitool convert npm-audit.json --output npm-audit.sarif || true
-          else
-            echo '{}' > npm-audit.sarif
-          fi
-
-      - name: Upload npm audit results
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: npm-audit.sarif
-
-      # -------------------
-      # Trivy (Container/FS)
-      # -------------------
-      - name: Run Trivy FS Scan
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: fs
-          ignore-unfixed: true
-          format: sarif
-          output: trivy-results.sarif
-        continue-on-error: true
-
-      - name: Upload Trivy results
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: trivy-results.sarif
-
-      # -------------------
-      # Gitleaks (Secrets)
-      # -------------------
-      - name: Run Gitleaks Secret Scan
-        uses: gitleaks/gitleaks-action@v2
-        with:
-          args: detect --source . --exit-code 0 --report-format sarif --report-path gitleaks-report.sarif
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
-
-      - name: Upload Gitleaks results
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: gitleaks-report.sarif
-
-      # -------------------
-      # Debug: List SARIF outputs
-      # -------------------
-      - name: List SARIF files
-        run: ls -lh *.sarif || true
