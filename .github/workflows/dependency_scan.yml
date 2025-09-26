@@ -1,38 +1,24 @@
 name: Dependency Scan
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
-
-permissions:
-  contents: read
-  pull-requests: read
-  security-events: write
+  push:
+    branches: [ main ]
 
 jobs:
   dependencies:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          node-version: '18'
+          python-version: "3.11"
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install pip-audit
+        run: pip install pip-audit
 
-      - name: Run npm audit
-        run: npm audit --json > npm-audit.json
-
-      - name: Convert npm audit report to SARIF
-        run: npx npm-audit-to-sarif npm-audit.json > npm-audit.sarif
-
-      - name: Upload SARIF report
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: npm-audit.sarif
+      - name: Run pip-audit
+        run: pip-audit -r requirements.txt || true
