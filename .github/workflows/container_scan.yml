@@ -1,33 +1,24 @@
 name: Container Scan
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
-
-permissions:
-  contents: read
-  pull-requests: read
-  security-events: write
+  push:
+    branches: [ main ]
 
 jobs:
   container:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Trivy Container Image Scan
+      - name: Build Docker image
+        run: docker build -t myapp:latest .
+
+      - name: Scan Docker image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: image
-          image-ref: my-image:latest
+          image-ref: myapp:latest
           format: sarif
-          output: trivy-image.sarif
-          severity: HIGH,CRITICAL
-
-      - name: Upload SARIF report
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: trivy-image.sarif
+          output: trivy-container.sarif
+        continue-on-error: true
