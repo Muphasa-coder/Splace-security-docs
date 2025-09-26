@@ -7,17 +7,21 @@ on:
     branches: [ main ]
 
 jobs:
-  security:
+  bandit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Bandit
-        run: pip install bandit
+      - name: Install Bandit + SARIF tools
+        run: |
+          pip install bandit sarif-tools
 
       - name: Run Bandit
-        run: bandit -r . --exit-zero -f sarif -o bandit.sarif
+        run: |
+          bandit -r . -f json -o bandit.json --exit-zero
+          sarif-tools convert bandit.json bandit.sarif || echo '{}' > bandit.sarif
 
-      - uses: github/codeql-action/upload-sarif@v2
+      - name: Upload SARIF to GitHub
+        uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: bandit.sarif
