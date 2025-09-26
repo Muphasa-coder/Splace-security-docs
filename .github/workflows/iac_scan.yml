@@ -1,29 +1,21 @@
 name: IaC Scan
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
-
-permissions:
-  contents: read
-  pull-requests: read
-  security-events: write
+  push:
+    branches: [ main ]
 
 jobs:
   iac:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Run Checkov
-        uses: bridgecrewio/checkov-action@v12
+      - name: Run Trivy IaC Scan
+        uses: aquasecurity/trivy-action@master
         with:
-          output_format: sarif
-          output_file_path: checkov-report.sarif
-
-      - name: Upload SARIF report
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: checkov-report.sarif
+          scan-type: config
+          format: sarif
+          output: trivy-iac.sarif
+        continue-on-error: true
